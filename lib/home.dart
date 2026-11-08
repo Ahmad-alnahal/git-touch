@@ -26,11 +26,11 @@ import 'package:git_touch/screens/gt_user.dart';
 import 'package:git_touch/screens/login.dart';
 import 'package:git_touch/utils/utils.dart';
 import 'package:github/github.dart';
-import 'package:in_app_review/in_app_review.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:provider/provider.dart';
 import 'package:pub_semver/pub_semver.dart';
 import 'package:universal_io/io.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -62,7 +62,8 @@ class _HomeState extends State<Home> {
         if (res == true) {
           if (Platform.isIOS) {
             // go to app store
-            InAppReview.instance.openStoreListing(appStoreId: '1452042346');
+            launchUrl(Uri.parse('https://apps.apple.com/app/id1452042346'),
+                mode: LaunchMode.externalApplication);
           } else {
             context.pushUrl(latest.htmlUrl!);
           }

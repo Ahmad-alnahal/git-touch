@@ -11,9 +11,10 @@ import 'package:git_touch/utils/locale.dart';
 import 'package:git_touch/utils/utils.dart';
 import 'package:git_touch/widgets/action_button.dart';
 import 'package:go_router/go_router.dart';
-import 'package:in_app_review/in_app_review.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:provider/provider.dart';
+import 'package:universal_io/io.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:tuple/tuple.dart';
 
 class SettingsScreen extends StatelessWidget {
@@ -210,8 +211,12 @@ class SettingsScreen extends StatelessWidget {
               AntListItem(
                 child: Text(AppLocalizations.of(context)!.rateThisApp),
                 onClick: () {
-                  InAppReview.instance
-                      .openStoreListing(appStoreId: '1452042346');
+                  launchUrl(
+                    Uri.parse(Platform.isIOS
+                        ? 'https://apps.apple.com/app/id1452042346'
+                        : 'https://play.google.com/store/apps/details?id=io.github.pd4d10.gittouch'),
+                    mode: LaunchMode.externalApplication,
+                  );
                 },
               ),
               AntListItem(

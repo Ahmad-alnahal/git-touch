@@ -20,7 +20,7 @@ class ActionItem {
       ActionItem(
         text: 'Share',
         onTap: (_) {
-          Share.share(url!);
+          SharePlus.instance.share(ShareParams(text: url!));
         },
       ),
       ActionItem(
